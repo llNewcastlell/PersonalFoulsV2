@@ -109,12 +109,15 @@
       <img src="nflimages/Kansas City Chiefs.gif" data-team-name="Chiefs" data-team-abv="kc" alt="">
       <img src="nflimages/Los Angeles Chargers.gif" data-team-name="Chargers" data-team-abv="lac" alt="">
       <img src="nflimages/Los Angeles Rams.gif" data-team-name="Rams" data-team-abv="la" alt="">
-      <img src="nflimages/Miami Dolphins.gif" data-team-name="Dolphins" data-team-abv="mia" alt="">
-      <img src="nflimages/Minnesota Vikings.gif" data-team-name="Vikings" data-team-abv="min" alt="">
+      <img src="nflimages/Miami Dolphins.gif" data-id="4809ecb0-abd3-451d-9c4a-92a90b83ca06" data-team-name="Dolphins" data-team-abv="mia"
+        alt="">
+      <img src="nflimages/Minnesota Vikings.gif" data-id="33405046-04ee-4058-a950-d606f8c30852" data-team-name="Vikings" data-team-abv="min"
+        alt="">
       <img src="nflimages/New England Patriots.gif" data-team-name="Patriots" data-team-abv="ne" alt="">
       <img src="nflimages/New Orleans Saints.gif" data-team-name="Saints" data-team-abv="no" alt="">
       <img src="nflimages/New York Giants.gif" data-team-name="Giants" data-team-abv="nyg" alt="">
-      <img src="nflimages/New York Jets.gif" data-team-name="Jets" data-team-abv="nyj" alt="">
+      <img src="nflimages/New York Jets.gif" data-id="5fee86ae-74ab-4bdd-8416-42a9dd9964f3" data-team-name="Jets" data-team-abv="nyj"
+        alt="">
       <img src="nflimages/Oakland Raiders.gif" data-team-name="Raiders" data-team-abv="oak" alt="">
       <img src="nflimages/Philadelphia Eagles.gif" data-team-name="Eagles" data-team-abv="phi" alt="">
       <img src="nflimages/Pittsburgh Steelers.gif" data-team-name="Steelers" data-team-abv="pit" alt="">
@@ -123,6 +126,7 @@
       <img src="nflimages/Tampa Bay Buccaneers.gif" data-team-name="Buccaneers" data-team-abv="tb" alt="">
       <img src="nflimages/Tennessee Titans.gif" data-team-name="Titans" data-team-abv="ten" alt="">
       <img src="nflimages/Washington Redskins.gif" data-team-name="Redskins" data-team-abv="was" alt="">
+      <button id="btn">click here</button>
     </div>
     <div class="row">
       <div class="col-sm-4">
@@ -161,7 +165,6 @@
   </div>
 
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -173,6 +176,8 @@
     $("img").on("click", function () {
       var teamAbv = $(this).attr("data-team-abv");
       var teamName = $(this).attr("data-team-name");
+      var teamID = $(this).attr("data-ID");
+      // var arrestYear = 
       $("#team-logos").toggle();
       $("#back-to-teams").show();
       $("#player-card").toggle();
@@ -181,26 +186,77 @@
           method: "GET"
         })
         .then(function (response) {
+          console.log(response)
           $(".players-on-team").empty();
           $(".team-title").text(teamName + " Players")
           for (var i = 0; i < response.length; i++) {
-            console.log(response[i].Name);
+            var playerName = response[i].Name;
             var playerList = $("<p>");
+            playerList.attr("data-team-ID", teamID);
+            playerList.attr("data-arrest-year", response[i].Date.slice(0, 4));
             playerList.addClass("player-name");
             playerList.text(response[i].Name);
             $(".players-on-team").append(playerList);
           }
+
+
         });
 
       $("#back-to-teams").on("click", function () {
         $(".players-on-team").empty();
         $("#back-to-teams").toggle();
         $("#team-logos").show();
-        // $(".players-on-team").hide();
-        // $(".team-title").text("Players")
         $("#player-card").hide();
       })
     });
+
+    function renderStats(player) {
+      console.log(player);
+
+    }
+
+    $(document).on("click", ".player-name", function () {
+      var arrestYear = $(this).attr("data-arrest-year");
+      var teamID = $(this).attr("data-team-ID");
+      var playerName = $(this).text();
+      console.log(arrestYear, teamID);
+      // console.log(playerName);
+      $.ajax({
+          // url: "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/players/9634e162-5ff5-4372-b72b-ee1b0cb73a0d/profile.json?api_key=hgzawgjxk849m49bx87ddwu6",
+          url: `https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/seasontd/${arrestYear}/REG/teams/${teamID}/statistics.json?api_key=hgzawgjxk849m49bx87ddwu6`,
+          method: "GET",
+
+        })
+        .then(function (response) {
+          console.log(response)
+          var playerID;
+          for (var i = 0; i < response.players.length; i++) {;
+            if (response.players[i].name == playerName) {
+              console.log(playerName);
+              playerID = response.players[i].id;
+              $.ajax({
+                  url: `https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/players/${playerID}/profile.json?api_key=hgzawgjxk849m49bx87ddwu6`,
+                  method: "GET"
+                })
+                .then(function (player) {
+                  // console.log(player);
+                  renderStats(player);
+                })
+              return;
+            }
+          }
+          playerID = response.players[0].id;
+          $.ajax({
+              url: `https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/players/${playerID}/profile.json?api_key=hgzawgjxk849m49bx87ddwu6`,
+              method: "GET"
+            })
+            .then(function (player) {
+              // console.log(player);
+              renderStats(player);
+            })
+          return;
+        })
+    })
   </script>
 
 </body>
