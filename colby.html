@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
   <!-- CSS Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+  
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous"> -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.1/cerulean/bootstrap.min.css"> -->
@@ -22,75 +25,91 @@
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.1/materia/bootstrap.min.css"> -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.1/superhero/bootstrap.min.css"> -->
   <title>Personal Fouls</title>
-
-
   <!-- Bootstrap core CSS -->
   <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
   <style>
     body {
       padding-top: 0;
     }
-
     .player-name {
       margin-bottom: 0;
     }
-
     .team-title {
       color: white;
     }
-
     .player-name,
     h5,
     img {
       cursor: pointer;
     }
-
     #back-to-teams {
       display: hidden;
     }
-
     #player-card {
       display: none;
     }
-
     #crime-card {
       display: none;
     }
-
     #career-card {
       display: none;
     }
-
     #team-logos {
       display: block;
     }
   </style>
-
 </head>
-
 <body background="nflimages/football-field-2016.jpg">
-
   <!-- Page Content -->
   <div class="container">
-
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
       <h1 class="display-3">Personal Fouls</h1>
       <!-- <img src="nflimages/cage-1161869_1280.png" alt="prisonbar" width="1105px" height="263px"> -->
-
       <img src="http://www.animatedimages.org/data/media/930/animated-police-light-image-0008.gif" border="0" alt="animated-police-light-image-0008"
         id="siren" align="right" />
       </a>
       <p class="lead">Choose a team. Select a player. Find the crime.</p>
       <!-- <a href="#" class="btn btn-primary btn-lg">Call to action!</a> -->
     </header>
-
     <!-- Page Features -->
     <div id="team-logos" class="container">
       <h3>Teams</h3>
+      
+      <img data-id="de760528-1dc0-416a-a978-b510d20692ff" src="nflimages/Arizona Cardinals.gif" alt="slide 1">
+      <img data-id="e6aa13a4-0055-48a9-bc41-be28dc106929" src="nflimages/Atlanta Falcons.gif" alt="">
+      <img data-id="ebd87119-b331-4469-9ea6-d51fe3ce2f1c" src="nflimages/Baltimore Ravens.gif" alt="">
+      <img  data-id="768c92aa-75ff-4a43-bcc0-f2798c2e1724" src="nflimages/Buffalo Bills.gif" alt="">
+      <img data-id="f14bf5cc-9a82-4a38-bc15-d39f75ed5314" src="nflimages/Carolina Panthers.gif" alt="">
+      <img  data-id="7b112545-38e6-483c-a55c-96cf6ee49cb8"  src="nflimages/Chicago Bears.gif" alt="">
+      <img  data-id="ad4ae08f-d808-42d5-a1e6-e9bc4e34d123" src="nflimages/Cincinnati Bengals.gif" alt="">
+      <img  data-id="d5a2eb42-8065-4174-ab79-0a6fa820e35e" src="nflimages/Cleveland Browns.gif" alt="">
+      <img  data-id="e627eec7-bbae-4fa4-8e73-8e1d6bc5c060"  src="nflimages/Dallas Cowboys.gif" alt="">
+      <img  data-id="ce92bd47-93d5-4fe9-ada4-0fc681e6caa0" src="nflimages/Denver Broncos.gif" alt="">
+      <img  data-id="c5a59daa-53a7-4de0-851f-fb12be893e9e" src="nflimages/Detroit Lions.gif" alt="">
+      <img  data-id="a20471b4-a8d9-40c7-95ad-90cc30e46932" src="nflimages/Green Bay Packers.gif" alt="">
+      <img  data-id="d26a1ca5-722d-4274-8f97-c92e49c96315" src="nflimages/Houston Texans.gif" alt="">
+      <img data-id="82cf9565-6eb9-4f01-bdbd-5aa0d472fcd9" src="nflimages/Inidanapolis Colts.gif" alt="">
+      <img data-id="f7ddd7fa-0bae-4f90-bc8e-669e4d6cf2de" src="nflimages/Jacksonville Jaguars.gif" alt="">
+      <img data-id="6680d28d-d4d2-49f6-aace-5292d3ec02c2" src="nflimages/Kansas City Chiefs.gif" alt="">
+      <img data-id="1f6dcffb-9823-43cd-9ff4-e7a8466749b5" src="nflimages/Los Angeles Chargers.gif" alt="">
+      <img data-id="2eff2a03-54d4-46ba-890e-2bc3925548f3" src="nflimages/Los Angeles Rams.gif" alt="">
+      <img data-id="4809ecb0-abd3-451d-9c4a-92a90b83ca06" src="nflimages/Miami Dolphins.gif" alt="">
+      <img data-id="33405046-04ee-4058-a950-d606f8c30852" src="nflimages/Minnesota Vikings.gif" alt="">
+      <img data-id="97354895-8c77-4fd4-a860-32e62ea7382a" src="nflimages/New England Patriots.gif" alt="">
+      <img data-id="0d855753-ea21-4953-89f9-0e20aff9eb73" src="nflimages/New Orleans Saints.gif" alt="">
+      <img data-id="04aa1c9d-66da-489d-b16a-1dee3f2eec4d" src="nflimages/New York Giants.gif" alt="">
+      <img data-id="5fee86ae-74ab-4bdd-8416-42a9dd9964f3" src="nflimages/New York Jets.gif" alt="">
+      <img data-id="1c1cec48-6352-4556-b789-35304c1a6ae1" src="nflimages/Oakland Raiders.gif" alt="">
+      <img data-id="386bdbf9-9eea-4869-bb9a-274b0bc66e80" src="nflimages/Philadelphia Eagles.gif" alt="">
+      <img data-id="cb2f9f1f-ac67-424e-9e72-1475cb0ed398" src="nflimages/Pittsburgh Steelers.gif" alt="">
+      <img data-id="f0e724b0-4cbf-495a-be47-013907608da9" src="nflimages/San Francisco 49ers.gif" alt="">
+      <img data-id="3d08af9e-c767-4f88-a7dc-b920c6d2b4a8" src="nflimages/Seatlle Seahawks.gif" alt="">
+      <img  data-id="4254d319-1bc7-4f81-b4ab-b5e6f3402b69" src="nflimages/Tampa Bay Buccaneers.gif" alt="">
+      <img data-id="82d2d380-3834-4938-835f-aec541e5ece7" src="nflimages/Tennessee Titans.gif" alt="">
+      <img data-id="22052ff7-c065-42ee-bc8f-c4691c50e624" src="nflimages/Washington Redskins.gif" alt="">
       <img src="nflimages/Arizona Cardinals.gif" data-team-name="Cardinals" data-team-abv="ari" alt="">
       <img src="nflimages/Atlanta Falcons.gif" data-team-name="Falcons" data-team-abv="atl" alt="">
       <img src="nflimages/Baltimore Ravens.gif" data-team-name="Ravens" data-team-abv="bal" alt="">
@@ -109,15 +128,12 @@
       <img src="nflimages/Kansas City Chiefs.gif" data-team-name="Chiefs" data-team-abv="kc" alt="">
       <img src="nflimages/Los Angeles Chargers.gif" data-team-name="Chargers" data-team-abv="lac" alt="">
       <img src="nflimages/Los Angeles Rams.gif" data-team-name="Rams" data-team-abv="la" alt="">
-      <img src="nflimages/Miami Dolphins.gif" data-id="4809ecb0-abd3-451d-9c4a-92a90b83ca06" data-team-name="Dolphins" data-team-abv="mia"
-        alt="">
-      <img src="nflimages/Minnesota Vikings.gif" data-id="33405046-04ee-4058-a950-d606f8c30852" data-team-name="Vikings" data-team-abv="min"
-        alt="">
+      <img src="nflimages/Miami Dolphins.gif" data-team-name="Dolphins" data-team-abv="mia" alt="">
+      <img src="nflimages/Minnesota Vikings.gif" data-team-name="Vikings" data-team-abv="min" alt="">
       <img src="nflimages/New England Patriots.gif" data-team-name="Patriots" data-team-abv="ne" alt="">
       <img src="nflimages/New Orleans Saints.gif" data-team-name="Saints" data-team-abv="no" alt="">
       <img src="nflimages/New York Giants.gif" data-team-name="Giants" data-team-abv="nyg" alt="">
-      <img src="nflimages/New York Jets.gif" data-id="5fee86ae-74ab-4bdd-8416-42a9dd9964f3" data-team-name="Jets" data-team-abv="nyj"
-        alt="">
+      <img src="nflimages/New York Jets.gif" data-team-name="Jets" data-team-abv="nyj" alt="">
       <img src="nflimages/Oakland Raiders.gif" data-team-name="Raiders" data-team-abv="oak" alt="">
       <img src="nflimages/Philadelphia Eagles.gif" data-team-name="Eagles" data-team-abv="phi" alt="">
       <img src="nflimages/Pittsburgh Steelers.gif" data-team-name="Steelers" data-team-abv="pit" alt="">
@@ -126,7 +142,6 @@
       <img src="nflimages/Tampa Bay Buccaneers.gif" data-team-name="Buccaneers" data-team-abv="tb" alt="">
       <img src="nflimages/Tennessee Titans.gif" data-team-name="Titans" data-team-abv="ten" alt="">
       <img src="nflimages/Washington Redskins.gif" data-team-name="Redskins" data-team-abv="was" alt="">
-      <button id="btn">click here</button>
     </div>
     <div class="row">
       <div class="col-sm-4">
@@ -144,7 +159,7 @@
       <div class="col-sm-4">
         <div id="crime-card" class="card">
           <div class="card-body">
-            <h5 class="card-title">NFL Criminal Stats</h5>
+            <h5 class="card-title"> Criminal Stats</h5>
             <p class="card-text">Criminal Data</p>
             <p class="card-text">""</p>
           </div>
@@ -154,17 +169,24 @@
         <div id="career-card" class="card">
           <div class="card-body">
             <h5 class="card-title">NFL Stats</h5>
-            <p class="card-text">NFL Stats from SportsRadar Api will go here.</p>
+            <p id="carstat" class="card-text"></p>
             <p class="card-text">Videos Here</p>
             <div>Career Stats</div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-
-
+  <!-- /.container -->
+  <!-- Footer -->
+  <!-- <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">PLAYOFFS??? &copy; Your talking about Playoffs!</p>
+    </div>
+  </footer> -->
+  <!-- Bootstrap core JavaScript -->
+  
+  <script src="vendor/personalFoul.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -176,8 +198,6 @@
     $("img").on("click", function () {
       var teamAbv = $(this).attr("data-team-abv");
       var teamName = $(this).attr("data-team-name");
-      var teamID = $(this).attr("data-ID");
-      // var arrestYear = 
       $("#team-logos").toggle();
       $("#back-to-teams").show();
       $("#player-card").toggle();
@@ -186,80 +206,26 @@
           method: "GET"
         })
         .then(function (response) {
-          console.log(response)
           $(".players-on-team").empty();
           $(".team-title").text(teamName + " Players")
           for (var i = 0; i < response.length; i++) {
-            var playerName = response[i].Name;
+            console.log(response[i].Name);
             var playerList = $("<p>");
-            playerList.attr("data-team-ID", teamID);
-            playerList.attr("data-arrest-year", response[i].Date.slice(0, 4));
             playerList.addClass("player-name");
             playerList.text(response[i].Name);
             $(".players-on-team").append(playerList);
           }
-
-
         });
-
       $("#back-to-teams").on("click", function () {
         $(".players-on-team").empty();
         $("#back-to-teams").toggle();
         $("#team-logos").show();
+        // $(".players-on-team").hide();
+        // $(".team-title").text("Players")
         $("#player-card").hide();
       })
     });
-
-    function renderStats(player) {
-      console.log(player);
-
-    }
-
-    $(document).on("click", ".player-name", function () {
-      var arrestYear = $(this).attr("data-arrest-year");
-      var teamID = $(this).attr("data-team-ID");
-      var playerName = $(this).text();
-      console.log(arrestYear, teamID);
-      // console.log(playerName);
-      $.ajax({
-          // url: "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/players/9634e162-5ff5-4372-b72b-ee1b0cb73a0d/profile.json?api_key=hgzawgjxk849m49bx87ddwu6",
-          url: `https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/seasontd/${arrestYear}/REG/teams/${teamID}/statistics.json?api_key=hgzawgjxk849m49bx87ddwu6`,
-          method: "GET",
-
-        })
-        .then(function (response) {
-          console.log(response)
-          var playerID;
-          for (var i = 0; i < response.players.length; i++) {;
-            if (response.players[i].name == playerName) {
-              console.log(playerName);
-              playerID = response.players[i].id;
-              $.ajax({
-                  url: `https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/players/${playerID}/profile.json?api_key=hgzawgjxk849m49bx87ddwu6`,
-                  method: "GET"
-                })
-                .then(function (player) {
-                  // console.log(player);
-                  renderStats(player);
-                })
-              return;
-            }
-          }
-          playerID = response.players[0].id;
-          $.ajax({
-              url: `https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/players/${playerID}/profile.json?api_key=hgzawgjxk849m49bx87ddwu6`,
-              method: "GET"
-            })
-            .then(function (player) {
-              // console.log(player);
-              renderStats(player);
-            })
-          return;
-        })
-    })
   </script>
-
 </body>
-
-
 </html>
+
