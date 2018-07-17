@@ -8,6 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.1/litera/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <title>Personal Fouls</title>
 
 
@@ -18,6 +19,10 @@
   <style>
     body {
       padding-top: 0;
+    }
+
+    hr {
+      height: 10px;
     }
 
     .player-name {
@@ -35,11 +40,11 @@
     }
 
     #back-to-teams {
-      display: hidden;
+      /* display: hidden; */
     }
 
     #player-card {
-      display: none;
+      /* display: none; */
       overflow: scroll;
       height: 550px;
     }
@@ -50,9 +55,9 @@
       height: 550px;
     }
 
-    /* #career-card {
-      display: none;
-    } */
+    #career-card {
+      /* display: none; */
+    }
 
     #team-logos {
       display: block;
@@ -151,7 +156,7 @@
         <div id="player-card" class="card">
           <div class="card-body">
             <h5>
-              <span id="back-to-teams" style="display:none;" class="badge badge-primary">Back to teams</span>
+              <span id="back-to-teams" class="badge badge-primary">Back to teams</span>
             </h5>
             <h3 style="color:black;" class="card-title team-title"></h3>
             <p class="card-text players-on-team"></p>
@@ -179,7 +184,6 @@
             <p id="career-data" class="card-text"></p>
             <h6 id="highlights-video-title" class="text-danger card-text"></h6>
             <iframe id="highlights" width="auto" height="auto" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <hr>
           </div>
         </div>
       </div>
@@ -194,6 +198,7 @@
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
 
   <script>
     $("img").on("click", function () {
@@ -201,8 +206,8 @@
       var teamName = $(this).attr("data-team-name");
       var teamID = $(this).attr("data-ID");
       $("#team-logos").toggle();
-      $("#back-to-teams").show();
-      $("#player-card").toggle();
+      // $("#back-to-teams").show();
+      // $("#player-card").toggle();
       $.ajax({
           url: "http://nflarrest.com/api/v1/team/arrests/" + teamAbv,
           method: "GET"
@@ -223,36 +228,22 @@
             playerList.text(response[i].Name);
             $(".players-on-team").append(playerList);
           }
-
-
         });
 
       $("#back-to-teams").on("click", function () {
         $(".players-on-team").empty();
-        $("#back-to-teams").toggle();
+        $("#player-crime-name").empty();
+        $("#crime-data").empty();
+        $("#arrested-video-title").empty();
+        $("#arrested").attr('src', '');
+        $("#highlights").attr('src', '');
+        $("#highlights-video-title").empty();
+        $("#player-career-name").empty();
+        $("#career-data").empty();
         $("#team-logos").show();
-        $("#player-card").hide();
+
       })
     });
-
-    // function renderArrestStats(playerName) {
-    //   var clickedPlayer = $(this).$("player-name").text();
-    //   $.ajax({
-    //       url: "http://nflarrest.com/api/v1/player/arrests/" + clickedPlayer,
-    //       method: "GET"
-    //     })
-    //     .then(function (response) {
-    //       console.log("Should be AP: " + clickedPlayer);
-    //     })
-    // }
-
-
-    // function renderStats(player) {
-    //   var crimeHeader = $("<h1>");
-    //   crimeHeader.text(player.name);
-    //   $("#player-crime-name").text(player.name);
-    //   // console.log("Render Stats Player Name: " + player.name);
-    // }
 
     // Sport Radar API call
 
@@ -261,45 +252,51 @@
       var teamID = $(this).attr("data-team-ID");
       var arrestID = $(this).attr("data-arrest-stats-id");
       var playerName = $(this).text();
-      // console.log(arrestYear, teamID);
+      $("#career-data").empty();
+      $("#career-card").show();
+      $("#crime-card").show();
       $.ajax({
-          url: `https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/seasontd/${arrestYear}/REG/teams/${teamID}/statistics.json?api_key=hgzawgjxk849m49bx87ddwu6`,
+          url: `https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/seasontd/${arrestYear}/REG/teams/${teamID}/statistics.json?api_key=vtrnaew9y79qepp9z26y8tmf`,
           method: "GET",
 
         })
         .then(function (response) {
           console.log(response)
-          var playerID;
           for (var i = 0; i < response.players.length; i++) {;
             if (response.players[i].name == playerName) {
-              // console.log(response.players[i]);
-              playerID = response.players[i].id;
-              playerName = response.players[i].name;
-              rushingAtt = response.players[i].rushing.attempts;
-              averageYds = response.players[i].rushing.avg_yards;
-              console.log("Player Name: " + playerName);
-              console.log("Player Att: " + rushingAtt);
-              console.log("Average Yds: " + averageYds);
-              console.log("Player ID: " + playerID);
-              $("#player-stats").text(playerName);
+              console.log(response.players[i]);
+              var gamesPlayed = response.players[i].games_played;
+              var gamesStarted = response.players[i].games_started;
+              var jerseyNumber = response.players[i].jersey;
+              var position = response.players[i].position;
+              var penalties = response.players[i].penalties.penalties;
+              var penaltiesYds = response.players[i].penalties.yards;
+              var playerID = response.players[i].id;
+              console.log(playerID);
+              $("#career-data").append("<li><strong>Jersey number: </strong>" + jerseyNumber + "</li>")
+              $("#career-data").append("<li><strong>Position: </strong>" + position + "</li>")
+              $("#career-data").append("<li><strong>Games started in " + arrestYear + ": </strong>" +
+                gamesStarted + "</li>")
+              $("#career-data").append("<li><strong>Penalties: </strong>" + penalties + " for " + penaltiesYds +
+                " yards</li>")
 
-              // Add career stats here!
-              // $("#crime-data").append();
-              
               $.ajax({
-                  url: `https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/players/${playerID}/profile.json?api_key=hgzawgjxk849m49bx87ddwu6`,
+                  url: `https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl-ot1/players/${playerID}/profile.json?api_key=vtrnaew9y79qepp9z26y8tmf`,
                   method: "GET"
                 })
                 .then(function (player) {
-                  console.log("Player: " + player.name);
-                  console.log("College: " + player.college);
+                  console.log(player);
+                  $("#career-data").append("<li><strong>College: </strong>" + player.college + "</li>")
+                  $("#career-data").append("<li><strong>College conference: </strong>" + player.college_conf +
+                    "</li>")
+                  $("#career-data").append("<li><strong>High School: </strong>" + player.high_school + "</li>")
+                  $("#career-data").append("<li><strong>Birthday: </strong>" + player.birth_date + "</li>")
+                  $("#career-data").append("<li><strong>Birth place: </strong>" + player.birth_place + "</li>")
 
                 })
               return;
             }
           }
-
-
         })
     })
 
@@ -320,16 +317,18 @@
           // console.log(response);
           $("#player-crime-name").text(arrestedPlayer);
           $("#player-career-name").text(arrestedPlayer);
-          $("#crime-data").append("<li> Arrested: " + response[0].Season + " " + response[0].ArrestSeasonState +
-            "</li>");
-          $("#crime-data").append("<li> Position: " + response[0].Position_name + "</li>");
-          $("#crime-data").append("<li> Category: " + response[0].Category + "</li>");
-          $("#crime-data").append("<li> Description: " + response[0].Description + "</li>");
-          $("#crime-data").append("<li> Outcome: " + response[0].Outcome + "</li>");
+
+          for (var i = 0; i < response.length; i++) {
+            $("#crime-data").append("<li> Arrested: " + response[i].Season + " " + response[i].ArrestSeasonState +
+              "</li>");
+            $("#crime-data").append("<li> Position: " + response[i].Position_name + "</li>");
+            $("#crime-data").append("<li> Category: " + response[i].Category + "</li>");
+            $("#crime-data").append("<li> Description: " + response[i].Description + "</li>");
+            $("#crime-data").append("<li> Outcome: " + response[i].Outcome + "</li><hr>");
+          };
           youTubeArrested(arrestedPlayer);
           youTubeHighlights(arrestedPlayer);
         });
-
 
 
       function youTubeArrested(arrestedPlayer) {
@@ -339,11 +338,9 @@
           url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${NFLPlayer}${arrestedPlayer}${arrested}&key=AIzaSyCwz5pE_BrAO1UtYIEAZpPs0bqHxkhIgIA`,
           method: "GET"
         }).then(function (response) {
-          // console.log(response.items[0].snippet.description);
-          // console.log(response.items[0].snippet.title);
-          var vidID = response.items[1].id.videoId;
+          var vidID = response.items[0].id.videoId;
           var videoURL = "https://www.youtube.com/embed/" + vidID;
-          var videoTitle = response.items[1].snippet.title;
+          var videoTitle = response.items[0].snippet.title;
           $("#arrested").attr("src", videoURL);
           $("#arrested-video-title").text(videoTitle);
         })
@@ -356,39 +353,16 @@
           url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${NFLPlayer}${arrestedPlayer}&key=AIzaSyCwz5pE_BrAO1UtYIEAZpPs0bqHxkhIgIA`,
           method: "GET"
         }).then(function (response) {
-          // console.log(response.items[0].snippet.description);
-          // console.log(response.items[0].snippet.title);
-          var vidID = response.items[1].id.videoId;
+          var vidID = response.items[0].id.videoId;
           var videoURL = "https://www.youtube.com/embed/" + vidID;
-          var videoTitle = response.items[1].snippet.title;
+          var videoTitle = response.items[0].snippet.title;
           $("#highlights").attr("src", videoURL);
           $("#highlights-video-title").text(videoTitle);
         })
       }
 
-
-      //Ryan Test API call
-
-
-      // $(document).on("click", ".player-name", function () {
-      //   $("#crime-data").empty();
-      //   var arrestYear = $(this).attr("data-arrest-year");
-      //   var teamID = $(this).attr("data-team-ID");
-      //   var arrestedPlayer = $(this).text();
-      //   // console.log(arrestYear, teamID);
-      //   $.ajax({
-
-      //       url: `http://nflarrest.com/api/v1/player/search/?term=${arrestedPlayer}`,
-      //       method: "GET",
-      //     })
-      //     .then(function (response) {
-      //       console.log(response);
-
-      //     });
-
     });
   </script>
-
 </body>
 
 
