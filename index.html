@@ -21,10 +21,6 @@
       padding-top: 0;
     }
 
-    hr {
-      height: 10px;
-    }
-
     .player-name {
       margin-bottom: 0;
     }
@@ -37,14 +33,17 @@
     h5,
     img {
       cursor: pointer;
+      background-color: transparent !important;
+      border: none !important;
+
     }
 
     #back-to-teams {
-      /* display: hidden; */
+      display: hidden;
     }
 
     #player-card {
-      /* display: none; */
+      display: none;
       overflow: scroll;
       height: 550px;
     }
@@ -62,6 +61,20 @@
     #team-logos {
       display: block;
     }
+
+    .img-thumbnail {
+      width: 150px;
+      height: 200px;
+      background-color: transparent !important;
+      border: none !important;
+      -webkit-animation-delay: 2s;
+      -webkit-animation-duration: 4s;
+    }
+
+    .referee {
+      width: 350px;
+      height: 350px;
+    }
   </style>
 
 </head>
@@ -72,85 +85,94 @@
   <div class="container">
 
     <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-      <h1 class="display-3">Personal Fouls</h1>
-      <!-- <img src="nflimages/cage-1161869_1280.png" alt="prisonbar" width="1105px" height="263px"> -->
 
-      <img src="http://www.animatedimages.org/data/media/930/animated-police-light-image-0008.gif" border="0" alt="animated-police-light-image-0008"
-        id="siren" align="right" />
-      </a>
-      <p class="lead">Choose a team. Select a player. Find the crime.</p>
-      <!-- <a href="#" class="btn btn-primary btn-lg">Call to action!</a> -->
+
+    <header class="jumbotron my-4">
+      <div class="row">
+        <div class="col-xl-9">
+          <img src="nflimages/300px-National_Football_League_logo.svg.png" alt="" class="img-thumbnail animate hinge">
+          <div class="text-block">
+            <h1 class="animated slideInLeft">Personal Fouls</h1>
+            <p class="lead animated slideInRight" style="margin-bottom:0;color: black">Choose a team. Select a player. Display the Crime.</p>
+          </div>
+        </div>
+        <div class="col-xl-3 d-flex justify-content-end">
+          <img src="nflimages/referee25.gif" style="height:200px; width:auto;" alt="" class="referee animated zoomInDown">
+        </div>
+      </div>
     </header>
 
-    <!-- Page Features -->
-    <div id="team-logos" class="container">
-      <h3>Teams</h3>
-      <img src="nflimages/Arizona Cardinals.gif" data-id="de760528-1dc0-416a-a978-b510d20692ff" data-team-name="Cardinals" data-team-abv="ari"
-        alt="">
-      <img src="nflimages/Atlanta Falcons.gif" data-id="e6aa13a4-0055-48a9-bc41-be28dc106929" data-team-name="Falcons" data-team-abv="atl"
-        alt="">
-      <img src="nflimages/Baltimore Ravens.gif" data-id="ebd87119-b331-4469-9ea6-d51fe3ce2f1c" data-team-name="Ravens" data-team-abv="bal"
-        alt="">
-      <img src="nflimages/Buffalo Bills.gif" data-id="768c92aa-75ff-4a43-bcc0-f2798c2e1724" data-team-name="Bills" data-team-abv="buf"
-        alt="">
-      <img src="nflimages/Carolina Panthers.gif" data-id="f14bf5cc-9a82-4a38-bc15-d39f75ed5314" data-team-name="Panthers" data-team-abv="car"
-        alt="">
-      <img src="nflimages/Chicago Bears.gif" data-id="7b112545-38e6-483c-a55c-96cf6ee49cb8" data-team-name="Bears" data-team-abv="chi"
-        alt="">
-      <img src="nflimages/Cincinnati Bengals.gif" data-id="ad4ae08f-d808-42d5-a1e6-e9bc4e34d123" data-team-name="Bengals" data-team-abv="cin"
-        alt="">
-      <img src="nflimages/Cleveland Browns.gif" data-id="d5a2eb42-8065-4174-ab79-0a6fa820e35e" data-team-name="Browns" data-team-abv="cle"
-        alt="">
-      <img src="nflimages/Dallas Cowboys.gif" data-id="e627eec7-bbae-4fa4-8e73-8e1d6bc5c060" data-team-name="Cowboys" data-team-abv="dal"
-        alt="">
-      <img src="nflimages/Denver Broncos.gif" data-id="ce92bd47-93d5-4fe9-ada4-0fc681e6caa0" data-team-name="Broncos" data-team-abv="den"
-        alt="">
-      <img src="nflimages/Detroit Lions.gif" data-id="c5a59daa-53a7-4de0-851f-fb12be893e9e" data-team-name="Lions" data-team-abv="det"
-        alt="">
-      <img src="nflimages/Green Bay Packers.gif" data-id="a20471b4-a8d9-40c7-95ad-90cc30e46932" data-team-name="Packers" data-team-abv="gb"
-        alt="">
-      <img src="nflimages/Houston Texans.gif" data-id="82d2d380-3834-4938-835f-aec541e5ece7" data-team-name="Texans" data-team-abv="hou"
-        alt="">
-      <img src="nflimages/Inidanapolis Colts.gif" data-id="82cf9565-6eb9-4f01-bdbd-5aa0d472fcd9" data-team-name="Colts" data-team-abv="ind"
-        alt="">
-      <img src="nflimages/Jacksonville Jaguars.gif" data-id="f7ddd7fa-0bae-4f90-bc8e-669e4d6cf2de" data-team-name="Jaguars" data-team-abv="jac"
-        alt="">
-      <img src="nflimages/Kansas City Chiefs.gif" data-id="6680d28d-d4d2-49f6-aace-5292d3ec02c2" data-team-name="Chiefs" data-team-abv="kc"
-        alt="">
-      <img src="nflimages/Los Angeles Chargers.gif" data-id="1f6dcffb-9823-43cd-9ff4-e7a8466749b5" data-team-name="Chargers" data-team-abv="lac"
-        alt="">
-      <img src="nflimages/Los Angeles Rams.gif" data-id="2eff2a03-54d4-46ba-890e-2bc3925548f3" data-team-name="Rams" data-team-abv="la"
-        alt="">
-      <img src="nflimages/Miami Dolphins.gif" data-id="4809ecb0-abd3-451d-9c4a-92a90b83ca06" data-team-name="Dolphins" data-team-abv="mia"
-        alt="">
-      <img src="nflimages/Minnesota Vikings.gif" data-id="33405046-04ee-4058-a950-d606f8c30852" data-team-name="Vikings" data-team-abv="min"
-        alt="">
-      <img src="nflimages/New England Patriots.gif" data-id="97354895-8c77-4fd4-a860-32e62ea7382a" data-team-name="Patriots" data-team-abv="ne"
-        alt="">
-      <img src="nflimages/New Orleans Saints.gif" data-id="0d855753-ea21-4953-89f9-0e20aff9eb73" data-team-name="Saints" data-team-abv="no"
-        alt="">
-      <img src="nflimages/New York Giants.gif" data-id="04aa1c9d-66da-489d-b16a-1dee3f2eec4d" data-team-name="Giants" data-team-abv="nyg"
-        alt="">
-      <img src="nflimages/New York Jets.gif" data-id="5fee86ae-74ab-4bdd-8416-42a9dd9964f3" data-team-name="Jets" data-team-abv="nyj"
-        alt="">
-      <img src="nflimages/Oakland Raiders.gif" data-id="1c1cec48-6352-4556-b789-35304c1a6ae1" data-team-name="Raiders" data-team-abv="oak"
-        alt="">
-      <img src="nflimages/Philadelphia Eagles.gif" data-id="386bdbf9-9eea-4869-bb9a-274b0bc66e80" data-team-name="Eagles" data-team-abv="phi"
-        alt="">
-      <img src="nflimages/Pittsburgh Steelers.gif" data-id="cb2f9f1f-ac67-424e-9e72-1475cb0ed398" data-team-name="Steelers" data-team-abv="pit"
-        alt="">
-      <img src="nflimages/San Francisco 49ers.gif" data-id="f0e724b0-4cbf-495a-be47-013907608da9" data-team-name="49ers" data-team-abv="sf"
-        alt="">
-      <img src="nflimages/Seatlle Seahawks.gif" data-id="3d08af9e-c767-4f88-a7dc-b920c6d2b4a8" data-team-name="Seahawks" data-team-abv="sea"
-        alt="">
-      <img src="nflimages/Tampa Bay Buccaneers.gif" data-id="4254d319-1bc7-4f81-b4ab-b5e6f3402b69" data-team-name="Buccaneers"
-        data-team-abv="tb" alt="">
-      <img src="nflimages/Tennessee Titans.gif" data-id="d26a1ca5-722d-4274-8f97-c92e49c96315" data-team-name="Titans" data-team-abv="ten"
-        alt="">
-      <img src="nflimages/Washington Redskins.gif" data-id="22052ff7-c065-42ee-bc8f-c4691c50e624" data-team-name="Redskins" data-team-abv="was"
-        alt="">
-    </div>
+  </div>
+
+  <!-- Page Features -->
+  <div id="team-logos" class="container">
+    <h3>Teams</h3>
+    <img class="team-icons" src="nflimages/Arizona Cardinals.gif" data-id="de760528-1dc0-416a-a978-b510d20692ff" data-team-name="Cardinals"
+      data-team-abv="ari" alt="">
+    <img class="team-icons" src="nflimages/Atlanta Falcons.gif" data-id="e6aa13a4-0055-48a9-bc41-be28dc106929" data-team-name="Falcons"
+      data-team-abv="atl" alt="">
+    <img class="team-icons" src="nflimages/Baltimore Ravens.gif" data-id="ebd87119-b331-4469-9ea6-d51fe3ce2f1c" data-team-name="Ravens"
+      data-team-abv="bal" alt="">
+    <img class="team-icons" src="nflimages/Buffalo Bills.gif" data-id="768c92aa-75ff-4a43-bcc0-f2798c2e1724" data-team-name="Bills"
+      data-team-abv="buf" alt="">
+    <img class="team-icons" src="nflimages/Carolina Panthers.gif" data-id="f14bf5cc-9a82-4a38-bc15-d39f75ed5314" data-team-name="Panthers"
+      data-team-abv="car" alt="">
+    <img class="team-icons" src="nflimages/Chicago Bears.gif" data-id="7b112545-38e6-483c-a55c-96cf6ee49cb8" data-team-name="Bears"
+      data-team-abv="chi" alt="">
+    <img class="team-icons" src="nflimages/Cincinnati Bengals.gif" data-id="ad4ae08f-d808-42d5-a1e6-e9bc4e34d123" data-team-name="Bengals"
+      data-team-abv="cin" alt="">
+    <img class="team-icons" src="nflimages/Cleveland Browns.gif" data-id="d5a2eb42-8065-4174-ab79-0a6fa820e35e" data-team-name="Browns"
+      data-team-abv="cle" alt="">
+    <img class="team-icons" src="nflimages/Dallas Cowboys.gif" data-id="e627eec7-bbae-4fa4-8e73-8e1d6bc5c060" data-team-name="Cowboys"
+      data-team-abv="dal" alt="">
+    <img class="team-icons" src="nflimages/Denver Broncos.gif" data-id="ce92bd47-93d5-4fe9-ada4-0fc681e6caa0" data-team-name="Broncos"
+      data-team-abv="den" alt="">
+    <img class="team-icons" src="nflimages/Detroit Lions.gif" data-id="c5a59daa-53a7-4de0-851f-fb12be893e9e" data-team-name="Lions"
+      data-team-abv="det" alt="">
+    <img class="team-icons" src="nflimages/Green Bay Packers.gif" data-id="a20471b4-a8d9-40c7-95ad-90cc30e46932" data-team-name="Packers"
+      data-team-abv="gb" alt="">
+    <img class="team-icons" src="nflimages/Houston Texans.gif" data-id="82d2d380-3834-4938-835f-aec541e5ece7" data-team-name="Texans"
+      data-team-abv="hou" alt="">
+    <img class="team-icons" src="nflimages/Inidanapolis Colts.gif" data-id="82cf9565-6eb9-4f01-bdbd-5aa0d472fcd9" data-team-name="Colts"
+      data-team-abv="ind" alt="">
+    <img class="team-icons" src="nflimages/Jacksonville Jaguars.gif" data-id="f7ddd7fa-0bae-4f90-bc8e-669e4d6cf2de" data-team-name="Jaguars"
+      data-team-abv="jac" alt="">
+    <img class="team-icons" src="nflimages/Kansas City Chiefs.gif" data-id="6680d28d-d4d2-49f6-aace-5292d3ec02c2" data-team-name="Chiefs"
+      data-team-abv="kc" alt="">
+    <img class="team-icons" src="nflimages/Los Angeles Chargers.gif" data-id="1f6dcffb-9823-43cd-9ff4-e7a8466749b5" data-team-name="Chargers"
+      data-team-abv="lac" alt="">
+    <img class="team-icons" src="nflimages/Los Angeles Rams.gif" data-id="2eff2a03-54d4-46ba-890e-2bc3925548f3" data-team-name="Rams"
+      data-team-abv="la" alt="">
+    <img class="team-icons" src="nflimages/Miami Dolphins.gif" data-id="4809ecb0-abd3-451d-9c4a-92a90b83ca06" data-team-name="Dolphins"
+      data-team-abv="mia" alt="">
+    <img class="team-icons" src="nflimages/Minnesota Vikings.gif" data-id="33405046-04ee-4058-a950-d606f8c30852" data-team-name="Vikings"
+      data-team-abv="min" alt="">
+    <img class="team-icons" src="nflimages/New England Patriots.gif" data-id="97354895-8c77-4fd4-a860-32e62ea7382a" data-team-name="Patriots"
+      data-team-abv="ne" alt="">
+    <img class="team-icons" src="nflimages/New Orleans Saints.gif" data-id="0d855753-ea21-4953-89f9-0e20aff9eb73" data-team-name="Saints"
+      data-team-abv="no" alt="">
+    <img class="team-icons" src="nflimages/New York Giants.gif" data-id="04aa1c9d-66da-489d-b16a-1dee3f2eec4d" data-team-name="Giants"
+      data-team-abv="nyg" alt="">
+    <img class="team-icons" src="nflimages/New York Jets.gif" data-id="5fee86ae-74ab-4bdd-8416-42a9dd9964f3" data-team-name="Jets"
+      data-team-abv="nyj" alt="">
+    <img class="team-icons" src="nflimages/Oakland Raiders.gif" data-id="1c1cec48-6352-4556-b789-35304c1a6ae1" data-team-name="Raiders"
+      data-team-abv="oak" alt="">
+    <img class="team-icons" src="nflimages/Philadelphia Eagles.gif" data-id="386bdbf9-9eea-4869-bb9a-274b0bc66e80" data-team-name="Eagles"
+      data-team-abv="phi" alt="">
+    <img class="team-icons" src="nflimages/Pittsburgh Steelers.gif" data-id="cb2f9f1f-ac67-424e-9e72-1475cb0ed398" data-team-name="Steelers"
+      data-team-abv="pit" alt="">
+    <img class="team-icons" src="nflimages/San Francisco 49ers.gif" data-id="f0e724b0-4cbf-495a-be47-013907608da9" data-team-name="49ers"
+      data-team-abv="sf" alt="">
+    <img class="team-icons" src="nflimages/Seatlle Seahawks.gif" data-id="3d08af9e-c767-4f88-a7dc-b920c6d2b4a8" data-team-name="Seahawks"
+      data-team-abv="sea" alt="">
+    <img class="team-icons" src="nflimages/Tampa Bay Buccaneers.gif" data-id="4254d319-1bc7-4f81-b4ab-b5e6f3402b69" data-team-name="Buccaneers"
+      data-team-abv="tb" alt="">
+    <img class="team-icons" src="nflimages/Tennessee Titans.gif" data-id="d26a1ca5-722d-4274-8f97-c92e49c96315" data-team-name="Titans"
+      data-team-abv="ten" alt="">
+    <img class="team-icons" src="nflimages/Washington Redskins.gif" data-id="22052ff7-c065-42ee-bc8f-c4691c50e624" data-team-name="Redskins"
+      data-team-abv="was" alt="">
+  </div>
+  <div class="container">
     <div class="row">
       <div class="col-sm-4">
         <div id="player-card" class="card">
@@ -188,8 +210,8 @@
         </div>
       </div>
     </div>
-
   </div>
+
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -201,13 +223,13 @@
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
 
   <script>
-    $("img").on("click", function () {
+    $(".team-icons").on("click", function () {
       var teamAbv = $(this).attr("data-team-abv");
       var teamName = $(this).attr("data-team-name");
       var teamID = $(this).attr("data-ID");
       $("#team-logos").toggle();
       // $("#back-to-teams").show();
-      // $("#player-card").toggle();
+      $("#player-card").toggle();
       $.ajax({
           url: "http://nflarrest.com/api/v1/team/arrests/" + teamAbv,
           method: "GET"
