@@ -95,6 +95,8 @@
             <h1 class="animated slideInLeft">Personal Fouls</h1>
             <p class="lead animated slideInRight" style="margin-bottom:0;color: black">Choose a team. Select a player. Display the Crime.</p>
           </div>
+          <div class="col-xl-9">
+          </div>
         </div>
         <div class="col-xl-3 d-flex justify-content-end">
           <img src="nflimages/referee25.gif" style="height:200px; width:auto;" alt="" class="referee animated zoomInDown">
@@ -341,12 +343,12 @@
           $("#player-career-name").text(arrestedPlayer);
 
           for (var i = 0; i < response.length; i++) {
-            $("#crime-data").append("<li> Arrested: " + response[i].Season + " " + response[i].ArrestSeasonState +
+            $("#crime-data").append("<li><strong>Arrested: </strong>" + response[i].Season + " " + response[i].ArrestSeasonState +
               "</li>");
-            $("#crime-data").append("<li> Position: " + response[i].Position_name + "</li>");
-            $("#crime-data").append("<li> Category: " + response[i].Category + "</li>");
-            $("#crime-data").append("<li> Description: " + response[i].Description + "</li>");
-            $("#crime-data").append("<li> Outcome: " + response[i].Outcome + "</li><hr>");
+            $("#crime-data").append("<li><strong>Position: </strong>" + response[i].Position_name + "</li>");
+            $("#crime-data").append("<li><strong>Category: </strong>" + response[i].Category + "</li>");
+            $("#crime-data").append("<li><strong>Description: </strong>" + response[i].Description + "</li>");
+            $("#crime-data").append("<li><strong>Outcome: </strong>" + response[i].Outcome + "</li><hr>");
           };
           youTubeArrested(arrestedPlayer);
           youTubeHighlights(arrestedPlayer);
