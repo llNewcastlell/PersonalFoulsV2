@@ -344,7 +344,7 @@
       var arrestedPlayer = $(this).text();
       // console.log(arrestYear, teamID);
       $.ajax({
-          url: `http://nflarrest.com/api/v1/player/arrests/${arrestedPlayer}`,
+          url: `https://nflarrest.com/api/v1/player/arrests/${arrestedPlayer}`,
           method: "GET",
         })
         .then(function (response) {
