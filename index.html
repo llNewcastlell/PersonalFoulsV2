@@ -49,13 +49,13 @@
     }
 
     #crime-card {
-      /* display: none; */
+      display: none;
       overflow: scroll;
       height: 550px;
     }
 
     #career-card {
-      /* display: none; */
+      display: none;
     }
 
     #team-logos {
@@ -68,12 +68,12 @@
       background-color: transparent !important;
       border: none !important;
       -webkit-animation-delay: 2s;
-      -webkit-animation-duration: 4s;
+      -webkit-animation-duration: 5s;
     }
 
     .referee {
-      width: 350px;
-      height: 350px;
+      width: 550px;
+      height: 550px;
     }
   </style>
 
@@ -191,7 +191,9 @@
       <div class="col-sm-4">
         <div id="crime-card" class="card">
           <div class="card-body">
-            <h5 class="text-primary card-title">NFL Criminal Stats</h5>
+              <img class="card-img-top animated zoomIn" src="http://www.animatedimages.org/data/media/930/animated-police-light-image-0008.gif"
+              border="0" alt="animated-police-light-image-0008" alt="">
+            <!-- <h5 class="text-primary card-title">NFL Criminal Stats</h5> -->
             <h4 id="player-crime-name" class="card-text"></h4>
             <p id="crime-data" class="card-text"></p>
             <h6 id="arrested-video-title" class="text-danger card-text"></h6>
@@ -231,7 +233,7 @@
       var teamID = $(this).attr("data-ID");
       $("#team-logos").toggle();
       // $("#back-to-teams").show();
-      $("#player-card").toggle();
+      // $("#player-card").toggle();
       $.ajax({
           url: "http://nflarrest.com/api/v1/team/arrests/" + teamAbv,
           method: "GET"
@@ -251,10 +253,14 @@
             playerList.addClass("player-name");
             playerList.text(response[i].Name);
             $(".players-on-team").append(playerList);
+            $("#player-card").show();
+            $("#crime-card").show();
+            $("#career-card").show();
           }
         });
 
       $("#back-to-teams").on("click", function () {
+        $("#team-logos").show();
         $(".players-on-team").empty();
         $("#player-crime-name").empty();
         $("#crime-data").empty();
@@ -264,7 +270,11 @@
         $("#highlights-video-title").empty();
         $("#player-career-name").empty();
         $("#career-data").empty();
-        $("#team-logos").show();
+        $(".team-title").empty();
+        $("#player-card").toggle();
+        $("#crime-card").toggle();
+        $("#career-card").toggle();
+        
 
       })
     });
